@@ -1,0 +1,21 @@
+body,html{
+    position: relative;
+}
+#navbar-button,
+#name{
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    color: rgb(86, 83, 83);
+    left: 40%;
+    margin-top: 3%;
+    font-size: large;
+    font-weight: 700;
+}
+#navbar-button:active{
+    color:  #67485A;;
+}
+#name{
+    left: -130%;
+    position: absolute;
+}

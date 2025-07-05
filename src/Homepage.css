@@ -1,0 +1,891 @@
+html,
+body {
+    background-color: white;
+    position: relative;
+    height: 100%;
+    position: relative;
+    overflow-x: hidden;
+}
+
+#navbar {
+    color: black;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    top: 0%;
+    position: absolute;
+    align-items: center;
+    margin-bottom: 0%;
+}
+
+.text,
+.text1 {
+    color: #4a5568;
+    font-weight: 450;
+    font-size: 30px;
+    text-align: left;
+    left: 3%;
+    position: absolute;
+    top: 20%;
+}
+
+.text1 {
+    top: 55%;
+}
+
+h1 {
+    color: #67485A;
+    left: 2%;
+    top: 20%;
+    font-weight: 900;
+    font-size: 90px;
+    position: absolute;
+}
+
+#intro-button1 {
+    position: absolute;
+    top: 80%;
+    left: 2%;
+    background-color: #67485A;
+    cursor: pointer;
+    z-index: 1000;
+    pointer-events: auto;
+}
+
+#intro-button1:hover {
+    background-color: #9a547b;
+}
+
+#intro-button2 {
+    position: absolute;
+    top: 80%;
+    left: 15%;
+    color: black;
+    background-color: transparent;
+    border: 1px solid black;
+    z-index: 1000;
+    pointer-events: auto;
+}
+
+#intro-button2:hover {
+    background-color: black;
+    color: white;
+}
+
+#image {
+    z-index: 10;
+    width: 350px;
+    height: 350px;
+    border: 1px solid #b38ea4;;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 100%;
+}
+
+#inner {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#text2,
+#text3,
+#text4 {
+    color: black;
+    font-weight: 900;
+    font-size: 60px;
+    text-align: left;
+    left: 3%;
+    position: absolute;
+    top: 100%;
+}
+#text3{
+    top: 280%;
+    position: absolute;
+}
+#text4{
+    position: absolute;
+    top: 340%;
+}
+
+#projects {
+    position: absolute;
+    top: 123%;
+    left: 2%;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+
+}
+
+#proj1,
+#proj2,
+#proj3,
+#proj4
+ {
+    position: absolute;
+    width: 530px;
+    height: 300px;
+    left: 0%;
+    border: none;
+    box-shadow: none;
+    background-color: white;
+    transition: transform 0.3s ease;
+}
+#proj2{
+    left: 50%;
+}
+#proj3{
+    top: 80%;
+    position: absolute;
+}
+#proj4{
+    top: 80%;
+    position: absolute;
+    left: 50%;
+}
+#proj1:hover,
+#proj2:hover,
+#proj3:hover,
+#proj4:hover{
+    transform: scale(1.05);
+    box-shadow: 10px 4px 10px #67485A;
+}
+#proj-img{
+    width: 490px;
+    height: 270px;
+    left: 0%;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+#topic,
+#topic2,
+#topic3,
+#topic4{
+    color: rgb(66, 64, 64);
+    position: absolute;
+    top: 45%;
+    left: 2%;
+    font-weight: 900;
+    font-size: 25px;
+    text-align: left;
+}
+#topic2{
+    left: 53%;
+}
+#topic3{
+    top: 125%;
+}
+#topic4{
+    left: 53%;
+    top: 125%;
+}
+
+#description,
+#description2,
+#description3,
+#description4{
+    position: absolute;
+    color: #4b4f57;
+    top: 53%;
+    left: 1%;
+    font-weight: 500;
+    text-align: left;
+}
+#description2{
+    left: 53%;
+}
+#description3{
+    top: 135%;
+}
+#description4{
+    top: 135%;
+    left: 53%;
+}
+ul{
+    position: absolute;
+    color: #67485A;
+    top: 315%;
+    left: 2%;
+}
+li{
+    text-align: left;
+}
+#fend{
+    position: absolute;
+    color: black;
+    top: 360%;
+    left: 28%;
+    font-weight: 700;
+    font-size: 25px;
+}
+#web,
+#frontend,
+#backend,
+#ss{
+    position: absolute;
+    color: gray;
+    top: 370%;
+    display: flex;
+    flex-direction: column;
+    left: 3%;
+    text-align: left;
+   
+}
+#frontend{
+    left: 28%;
+}
+#backend{
+    left: 50%;
+}
+#ss{
+    left: 75%;
+}
+#story{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 80%;
+    left: 0%;
+}
+#p-story{
+    position: absolute;
+    top: 363%;
+    left: 3%;
+    padding-right: 2%;
+    text-align: left;
+    color:rgb(90, 88, 88);
+    font-size: 115%;
+    font-weight: 600;
+}
+#icons{
+    position: absolute;
+    padding-bottom: 5%;
+    top: 505%;
+    display: flex;
+    align-items: center;
+
+}
+#linkedin,
+#github{
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 30px;       
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+    display: flex;          
+    justify-content: center;
+    align-items: center;
+    left: 710px;
+}
+#github{
+    left: 610px;
+}
+#icon{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+
+@media (max-width: 414px) {
+    .text,
+.text1 {
+    color: #4a5568;
+    font-weight: 3000;
+    font-size: 17px;
+    text-align: left;
+    left: 3%;
+    position: absolute;
+    top: 20%;
+}
+
+.text1 {
+    top: 50%;
+}
+h1 {
+    color: #67485A;
+    left: 2%;
+    top: 20%;
+    font-weight: 780;
+    font-size: 55px;
+    position: absolute;
+}
+
+#intro-button2 {
+    left: 25%;
+}
+
+
+#image {
+    width: 0px;
+    height: 0px;
+}
+
+#inner {
+    width: 0px;
+    height: 0px;
+}
+
+#projects {
+    position: absolute;
+    top: 123%;
+    left: 2%;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+
+}
+
+#proj1,
+#proj2,
+#proj3,
+#proj4
+ {
+    position: absolute;
+    width: 330px;
+    height: 300px;
+    left: -3%;
+    border: none;
+    box-shadow: none;
+    background-color: white;
+    transition: transform 0.3s ease;
+}
+#proj2{
+    left: 45%;
+}
+#proj3{
+    top: 80%;
+    position: absolute;
+}
+#proj4{
+    top: 80%;
+    position: absolute;
+    left: 45%;
+}
+
+#proj-img{
+    width: 290px;
+    height: 270px;
+    left: 0%;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+#topic,
+#topic2,
+#topic3,
+#topic4{
+    color: rgb(66, 64, 64);
+    position: absolute;
+    top: 45%;
+    left: 0%;
+    font-weight: 900;
+    font-size: 20px;
+    text-align: left;
+}
+#topic2{
+    left: 48%;
+}
+#topic3{
+    top: 125%;
+}
+#topic4{
+    left: 48%;
+    top: 125%;
+}
+
+#description,
+#description2,
+#description3,
+#description4{
+    position: absolute;
+    color: #4b4f57;
+    top: 53%;
+    left: 0%;
+    font-weight: 400;
+    text-align: left;
+    font-size: 75%;
+}
+#description2{
+    left: 53%;
+}
+#description3{
+    top: 135%;
+    font-size: 50%;
+
+}
+#description4{
+    top: 135%;
+    left: 48%;
+
+}
+#web,
+#frontend,
+#backend,
+#ss{
+    position: absolute;
+    color: gray;
+    top: 370%;
+    display: flex;
+    flex-direction: column;
+    left: 3%;
+    text-align: left;
+    font-size: 60%;
+   
+}
+#fend{
+    position: absolute;
+    color: black;
+    top: 360%;
+    left: 25%;
+    font-weight: 700;
+    font-size: 25px;
+    margin-left: 2%;
+
+}
+
+#frontend{
+    left: 30%;
+}
+#backend{
+    left: 50%;
+}
+#ss{
+    left: 78%;
+}
+
+#icons{
+    position: absolute;
+    padding-bottom: 5%;
+    top: 525%;
+    display: flex;
+    align-items: center;
+
+}
+#linkedin,
+#github{
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 30px;       
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+    display: flex;          
+    justify-content: center;
+    align-items: center;
+    left: 305px;
+}
+#github{
+    left: 205px;
+}
+
+}
+
+@media (max-width: 820px) {
+   #image {
+    z-index: 10;
+    width: 270px;
+    height: 350px;
+    border: 1px solid #b38ea4;;
+    border-radius: 50%;
+}
+#navbar {
+    gap: 10px;
+}
+#intro-button2 {
+    left: 25%;
+}
+
+#proj1,
+#proj2,
+#proj3,
+#proj4
+ {
+    position: absolute;
+    width: 80px;
+    height: 300px;
+    left: 0%;
+    border: none;
+    box-shadow: none;
+    background-color: white;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+#proj2{
+    top: 43%;
+    left: 0%;
+}
+#proj3{
+    top: 80%;
+    position: absolute;
+}
+#proj4{
+    top: 125%;
+    position: absolute;
+    left: 0%;
+}
+
+#proj-img{
+    width: 700px;
+    height: 270px;
+    left: 0%;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+#topic,
+#topic2,
+#topic3,
+#topic4{
+    top: 25%;
+    
+}
+#topic2{
+    left: 1%;
+    top: 67%;
+}
+#topic3{
+    top: 105%;
+}
+#topic4{
+    left: 2%;
+    top: 150%;
+}
+
+#description,
+#description2,
+#description3,
+#description4{
+    position: absolute;
+    color: #4b4f57;
+    top: 30%;
+    left: 1%;
+    font-weight: 500;
+    text-align: left;
+    
+}
+#description2{
+    left: 2%;
+    top: 73%;
+}
+#description3{
+    top: 110%;
+    left: 3%;
+}
+#description4{
+    top: 155%;
+    left: 3%;
+}
+#text3{
+    top: 290%;   
+}
+
+#p-story{
+    top: 355%;
+}
+#icons{
+    top: 480%;
+
+}
+#linkedin,
+#github{
+    left: 400px;
+}
+#github{
+    left: 300px;
+}
+}
+@media (max-width: 480px) {
+
+#navbar {
+    gap: 0px;
+    top: 0%;
+    left: 15%;
+}
+    .text,
+.text1 {
+    font-weight: 3000;
+    font-size: 13px;
+}
+.text1 {
+    top: 50%;
+}
+
+#intro-button2 {
+    position: absolute;
+    top: 80%;
+    left: 45%;
+}
+
+#image {
+    width: 0px;
+    height: 0px;
+}
+
+#inner {
+    width: 0px;
+    height: 0px;
+}
+
+/* #projects {
+    position: absolute;
+    top: 123%;
+    left: 2%;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+
+} */
+
+#proj1,
+#proj2,
+#proj3,
+#proj4
+ {
+
+    width: 330px;
+    height: 200px;
+    left: -3%;
+}
+#proj2{
+    left: -3%;
+    top: 45%;
+}
+#proj3{
+    top: 90%;
+    position: absolute;
+}
+#proj4{
+    width: 330px;
+    top: 136%;
+    position: absolute;
+    left: -2%;
+}
+
+#proj-img{
+    width: 290px;
+    height: 180px;
+    left: 0%;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+#topic,
+#topic2,
+#topic3,
+#topic4{
+    color: rgb(66, 64, 64);
+    position: absolute;
+    top: 33%;
+    left: 2%;
+    font-weight: 700;
+    font-size: 15px;
+    text-align: left;
+}
+#topic2{
+    left: 2%;
+    top: 60;
+}
+#topic3{
+    top: 123%;
+}
+#topic4{
+    left: 2%;
+    top: 168%;
+}
+
+#description,
+#description2,
+#description3,
+#description4{
+    position: absolute;
+    color: #4b4f57;
+    top: 38%;
+    left: 2%;
+    font-weight: 300;
+    text-align: left;
+    font-size: 55%;
+}
+#description2{
+    left: 3%;
+    top: 80%;
+}
+#description3{
+    top: 128%;
+    font-size: 50%;
+    left: 1%;
+
+}
+#description4{
+    top: 135%;
+    left: 48%;
+
+}
+#web,
+#frontend,
+#backend,
+#ss{
+    position: absolute;
+    color: gray;
+    top: 370%;
+    display: flex;
+    flex-direction: column;
+    left: 3%;
+    text-align: left;
+    font-size: 60%;
+   
+}
+#fend{
+    position: absolute;
+    color: black;
+    top: 360%;
+    left: 25%;
+    font-weight: 700;
+    font-size: 25px;
+    margin-left: 2%;
+
+}
+
+#frontend{
+    left: 30%;
+}
+#backend{
+    left: 50%;
+}
+#ss{
+    left: 78%;
+}
+
+#icons{
+    position: absolute;
+    padding-bottom: 5%;
+    top: 525%;
+    display: flex;
+    align-items: center;
+
+}
+#linkedin,
+#github{
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 30px;       
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+    display: flex;          
+    justify-content: center;
+    align-items: center;
+    left: 305px;
+}
+#github{
+    left: 205px;
+}
+
+}
+@media (max-width: 768px) {
+   #image {
+    z-index: 10;
+    width: 210px;
+    height: 350px;
+    border: 1px solid #b38ea4;;
+    border-radius: 50%;
+}
+
+#proj-img{
+    width: 500px;
+    height: 270px;
+    left: 0%;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;    
+}
+
+#topic,
+#topic2,
+#topic3,
+#topic4{
+    top: 27%;
+    left: 2%;
+}
+#topic2{
+    left: 2%;
+    top: 69%;
+}
+#topic3{
+    top: 105%;
+}
+#topic4{
+    left: 2%;
+    top: 150%;
+}
+
+#description,
+#description2,
+#description3,
+#description4{
+    position: absolute;
+    color: #4b4f57;
+    top: 31%;
+    left: 2%;
+    font-weight: 500;
+    text-align: left;
+    
+}
+#description2{
+    left: 2%;
+    top: 73%;
+}
+#description3{
+    top: 110%;
+    left: 3%;
+    font-size: 13px;
+}
+#description4{
+    top: 155%;
+    left: 3%;
+}
+
+#linkedin,
+#github{
+    left: 250px;
+}
+#github{
+    left: 300px;
+}
+}
