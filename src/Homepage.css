@@ -129,6 +129,7 @@ h1 {
 #proj3,
 #proj4
  {
+    z-index: 10;
     position: absolute;
     width: 530px;
     height: 300px;

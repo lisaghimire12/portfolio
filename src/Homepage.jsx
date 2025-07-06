@@ -45,19 +45,18 @@ function Homepage() {
 
             <h2 id='text2' >Projects<span style={{ color: "#67485A" }} >.</span></h2>
             <div id='projects' ref={projectsRef}>
-                <button id='proj1' >
-                    <img id='proj-img' src={Image2} alt='project1'
-                        onClick={() => window.open("https://e-commerse-opal.vercel.app/", "_blank")}
-                    >
+                <button id='proj1'  
+                onClick={() => window.open("https://e-commerse-opal.vercel.app/", "_blank")}>
+                    <img id='proj-img' src={Image2} alt='project1'>
                     </img>
                 </button>
                 <h3 id='topic' >CLICON</h3>
                 <p id='description'>E-commerce platform showcasing eco-friendly <br></br>
                     products using React and product API integration</p>
 
-                <button id='proj2'>
-                    <img id='proj-img' src={Image3} alt='project1'
-                        onClick={() => window.open("https://translator-ebon-eight.vercel.app/", "_blank")}></img>
+                <button id='proj2' 
+                onClick={() => window.open("https://translator-ebon-eight.vercel.app/", "_blank")}>
+                    <img id='proj-img' src={Image3} alt='project1'></img>
                 </button>
                 <h3 id='topic2'>TRANSLATOR.IO</h3>
                 <p id='description2'> Translator app built with React(JSX), enabling seamless multilingual <br></br>text conversion using external APIs that features language,text-to-speech and clipboard support.</p>
