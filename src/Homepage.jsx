@@ -74,15 +74,13 @@ function Homepage() {
 
                 <button id='proj4' >
                     <img id='proj-img' src={Image5} alt='project4'
-                        onClick={() => window.open("https://coinflip-puce-eight.vercel.app/", "_blank")}
+                        onClick={() => window.open("https://lisaghimire12.pythonanywhere.com/", "_blank")}
                     >
                     </img>
                 </button>
-                <h3 id='topic4' >COIN-FLIPPER</h3>
+                <h3 id='topic4' >Event Manager</h3>
                 <p id='description4'>
-                    Simple coin flip app using React(JSX),CSS to simulate a virtual toss with<br></br>
-                    random results. Features responsive design, styled UI, and dynamic DOM
-                    manipulation.
+                    Developed a full-stack event management web application using Django with integrated Bootstrap UI for responsive design. The platform enables users to create, view, update, and delete events, while administrators can manage all events via a customized Django admin panel.
 
                 </p>
 
