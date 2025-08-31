@@ -9,6 +9,7 @@ import Image4 from '/src/assets/images/img4.png'
 import Image5 from '/src/assets/images/img5.png'
 import Image6 from '/src/assets/images/img6.svg'
 import Image7 from '/src/assets/images/img7.svg'
+import Image10 from '/src/assets/images/img10.svg'
 
 
 function Homepage() {
@@ -62,14 +63,13 @@ function Homepage() {
                 <p id='description2'> Translator app built with React(JSX), enabling seamless multilingual <br></br>text conversion using external APIs that features language,text-to-speech and clipboard support.</p>
 
                 <button id='proj3' >
-                    <img id='proj-img' src={Image4} alt='project3'
-                        onClick={() => window.open("https://conference-ticket-generator-black.vercel.app/", "_blank")}
+                    <img id='proj-img' src={Image10} alt='project3'
+                        onClick={() => window.open("https://weatherwear-vlqg.onrender.com/?city=Reykjavik", "_blank")}
                     >
                     </img>
                 </button>
-                <h3 id='topic3' >CODING-CONF</h3>
-                <p id='description3'>Conference ticket generator built with React(JSX), allowing users to fill and <br></br>validate form details. Generates a personalized ticket on submission with responsive <br></br>
-                    and accessible design products using React and product API integration</p>
+                <h3 id='topic3' >WeatherWear</h3>
+                <p id='description3'>WeatherWear is a Django web app that fetches real-time weather using the<br></br> OpenWeather API and suggests outfit ideas by providing curated Pinterest links,<br></br> helping users dress appropriately and explore style inspiration.</p>
 
 
                 <button id='proj4' >
