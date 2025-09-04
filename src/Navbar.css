@@ -1,21 +1,20 @@
-body,html{
-    position: relative;
-}
 #navbar-button,
-#name{
+#name {
+    margin-top: 2px;
     background-color: transparent;
     border: none;
     box-shadow: none;
-    color: rgb(86, 83, 83);
-    left: 40%;
-    margin-top: 3%;
-    font-size: large;
+    color: #FFDCDC;
+    font-size: 2rem;
     font-weight: 700;
 }
-#navbar-button:active{
-    color:  #67485A;;
+
+#navbar-button:active {
+    color: #67485A;;
 }
-#name{
-    left: -130%;
-    position: absolute;
+
+#name {
+    color: #FFDCDC;
+    font-size: 2rem;
+    margin-right: 30%;
 }
