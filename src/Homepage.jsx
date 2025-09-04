@@ -55,7 +55,7 @@ function Homepage() {
                 </div>
 
                 <div className='project'>
-                    <a href="https://translator-ebon-eight.vercel.app/" target="_blank">
+                    <a href="https://weatherwear-vlqg.onrender.com/?city=Reykjavik" target="_blank">
                         <img className='proj-img' src={Image10} alt='Translator project screenshot' />
                     </a>
                     <h3 className='topic'>WeatherWear</h3>
