@@ -5,7 +5,7 @@ import Image from '/src/assets/images/picture.png';
 import { useNavigate } from "react-router-dom";
 import contact from '/src/assets/images/contact.svg';
 import mail from '/src/assets/images/mail.svg';
-function More({ theme, setTheme }) {
+function More() {
     const navigate = useNavigate();
     const handleHomeClick = () => {
         navigate('/');
@@ -15,8 +15,6 @@ function More({ theme, setTheme }) {
         <>
             <Navbar 
             handleHomeClick={handleHomeClick} 
-            theme={theme}
-            setTheme={setTheme}
             />
             <div id="more-wrapper">
                 <div id="more-left">

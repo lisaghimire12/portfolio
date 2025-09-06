@@ -12,7 +12,7 @@ import Image7 from '/src/assets/images/github.svg'
 import Image10 from '/src/assets/images/img10.svg'
 
 
-function Homepage({theme, setTheme}) {
+function Homepage() {
     const navigate = useNavigate();
 
     const handleHomeClick = () => {
@@ -30,8 +30,7 @@ function Homepage({theme, setTheme}) {
             <Navbar 
             onProjectsClick={scrollToProjects} 
             handleHomeClick={handleHomeClick} 
-            theme={theme}
-            setTheme={setTheme}
+           
             />
             <div id='first'>
                 <div id='intro'>

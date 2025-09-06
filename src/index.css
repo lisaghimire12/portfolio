@@ -81,4 +81,18 @@ body.light{
   button {
     background-color: #f9f9f9;
   }
+  body.light{
+  background-color: rgb(240, 242, 245);
+  color: black;
+  h1,ul {
+    color: black;
+  }
+.topic,.description,.text2,
+.ex-p , .navbar-button{
+  color: black;
+}
+#p-story, #name{
+  color: black;
+}
+}
 }
