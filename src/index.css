@@ -56,6 +56,20 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+body.light{
+  background-color: rgb(240, 242, 245);
+  color: black;
+  h1,ul {
+    color: black;
+  }
+.topic,.description,.text2,
+.ex-p , .navbar-button{
+  color: black;
+}
+#p-story, #name{
+  color: black;
+}
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

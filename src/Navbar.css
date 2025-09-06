@@ -1,4 +1,8 @@
-#navbar-button,
+#navbar{
+    display: flex;
+    align-items: center;
+}
+.navbar-button,
 #name {
     margin-top: 2px;
     background-color: transparent;
@@ -9,7 +13,7 @@
     font-weight: 700;
 }
 
-#navbar-button:active {
+.navbar-button:active {
     color: #67485A;;
 }
 
