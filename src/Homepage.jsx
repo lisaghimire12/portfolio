@@ -134,7 +134,7 @@ function Homepage() {
                         Backend </h3>
                     <div className='list'>
                         <p>Version control (Git/GitHub)</p>
-                        <p>MondoDB</p>
+                        <p>MongoDB</p>
                         <p>SQL</p>
                     </div>
                 </div>
