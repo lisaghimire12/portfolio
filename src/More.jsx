@@ -38,7 +38,14 @@ function More() {
                             <div className="info" >
                                 <img className="contact" src={contact} alt="Contact">
                                 </img>
-                                <h2 className="more">+91-8122603493</h2> </div> </a> {/* <a href="https://www.whatsapp.com/" target="_blank" > <h2 className="more">+977-9742557149</h2> </a> */}
+                                <h2 className="more">+91-8122603493</h2> </div> </a> 
+
+                        <a href="https://www.whatsapp.com/" target="_blank" >
+                            <div className="info" >
+                                <img className="contact" src={contact} alt="Contact">
+                                </img>
+                                <h2 className="more">+977-9742557149</h2> </div> </a> 
+                                
                     </div>
                 </div>
                 <div id="more-image">
