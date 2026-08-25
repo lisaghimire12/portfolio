@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './Homepage.css';
 import Navbar from './Navbar';
 
@@ -14,6 +14,13 @@ function Homepage() {
 
     const projectsRef = useRef(null);
     const contactRef = useRef(null);
+
+    const [scrollY, setScrollY] = useState(0);
+    const [scrollProgress, setScrollProgress] = useState(0);
+    const [mouse, setMouse] = useState({
+        x: 0,
+        y: 0
+    });
 
 
     const handleHomeClick = () => {
@@ -35,12 +42,168 @@ function Homepage() {
     };
 
 
+/* SCROLL*/
+
+    useEffect(() => {
+
+        const handleScroll = () => {
+
+            const currentScroll =
+                window.scrollY;
+
+            setScrollY(currentScroll);
+
+
+            const totalHeight =
+                document.documentElement.scrollHeight -
+                window.innerHeight;
+
+
+            if (totalHeight > 0) {
+
+                setScrollProgress(
+                    (currentScroll / totalHeight) * 100
+                );
+
+            }
+
+        };
+
+
+        window.addEventListener(
+            'scroll',
+            handleScroll,
+            { passive: true }
+        );
+
+
+        handleScroll();
+
+
+        return () => {
+
+            window.removeEventListener(
+                'scroll',
+                handleScroll
+            );
+
+        };
+
+    }, []);
+
+
+/*Mouse movement*/
+
+    useEffect(() => {
+
+        const handleMouseMove = (event) => {
+
+            const x =
+                (event.clientX / window.innerWidth - 0.5) * 18;
+
+            const y =
+                (event.clientY / window.innerHeight - 0.5) * 18;
+
+
+            setMouse({
+                x,
+                y
+            });
+
+        };
+
+
+        window.addEventListener(
+            'mousemove',
+            handleMouseMove
+        );
+
+
+        return () => {
+
+            window.removeEventListener(
+                'mousemove',
+                handleMouseMove
+            );
+
+        };
+
+    }, []);
+
+
+/*reveal*/
+
+    useEffect(() => {
+
+        const elements =
+            document.querySelectorAll('.reveal');
+
+
+        if (!elements.length) {
+            return;
+        }
+
+
+        const observer =
+            new IntersectionObserver(
+
+                (entries) => {
+
+                    entries.forEach(
+                        (entry) => {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target.classList.add(
+                                    'is-visible'
+                                );
+
+                                observer.unobserve(
+                                    entry.target
+                                );
+
+                            }
+
+                        }
+                    );
+
+                },
+
+                {
+                    threshold: 0.12
+                }
+
+            );
+
+
+        elements.forEach(
+            (element) => {
+
+                observer.observe(
+                    element
+                );
+
+            }
+        );
+
+
+        return () => {
+            observer.disconnect();
+        };
+
+    }, []);
+
+/*Projects*/
+
     const projects = [
 
         {
             number: '01',
 
-            title: 'User Journey Intelligence System',
+            title:
+                'User Journey Intelligence System',
 
             category:
                 'Causal Inference · Simulation · Analytics',
@@ -167,7 +330,16 @@ function Homepage() {
 
 
     return (
+
         <>
+            <div
+                className="scroll-progress"
+                style={{
+                    width: `${scrollProgress}%`
+                }}
+            />
+
+
             <Navbar
                 onProjectsClick={scrollToProjects}
                 handleHomeClick={handleHomeClick}
@@ -175,37 +347,79 @@ function Homepage() {
 
 
             <main>
-
-                {/* =================================================
-                    HERO
-                ================================================= */}
-
                 <section
                     className="hero"
                     id="home"
                 >
 
-                    <div className="hero-content">
 
-                        <p className="eyebrow">
+                    <div
+                        className="hero-content"
+
+                        style={{
+                            transform: `
+                                translateY(${scrollY * -0.10}px)
+                                scale(${1 - Math.min(scrollY / 7000, 0.045)})
+                            `,
+
+                            opacity:
+                                Math.max(
+                                    0,
+                                    1 - scrollY / 850
+                                )
+                        }}
+                    >
+
+                        <p className="eyebrow hero-eyebrow">
+
                             SOFTWARE · AI/ML · FRONTEND
+
                         </p>
 
 
-                        <h1>
-                            Hey, I'm Lisa.
-                            <span>
+                        <h1 className="hero-title">
+
+                            <span
+                                className="
+                                    hero-line
+                                    hero-white
+                                "
+                            >
+                                Hey, I'm Lisa.
+                            </span>
+
+
+                            <span
+                                className="
+                                    hero-line
+                                    hero-pink
+                                "
+                            >
                                 I build things with code,
+                            </span>
+
+
+                            <span
+                                className="
+                                    hero-line
+                                    hero-white
+                                "
+                            >
                                 data & curiosity.
                             </span>
+
                         </h1>
 
 
                         <p className="hero-description">
-                            I'm a fourth-year Information Technology student
-                            at VIT Vellore interested in software development,
-                            machine learning, and building useful things from
-                            ideas that start out as "what if?"
+
+                            I'm a fourth-year Information
+                            Technology student at VIT Vellore
+                            interested in software development,
+                            machine learning, and building useful
+                            things from ideas that start out as
+                            "what if?"
+
                         </p>
 
 
@@ -213,17 +427,23 @@ function Homepage() {
 
                             <button
                                 className="primary-button"
-                                onClick={scrollToProjects}
+                                onClick={
+                                    scrollToProjects
+                                }
                             >
                                 See My Work
+                                <span>↓</span>
                             </button>
 
 
                             <button
                                 className="secondary-button"
-                                onClick={scrollToContact}
+                                onClick={
+                                    scrollToContact
+                                }
                             >
                                 Get In Touch
+                                <span>↗</span>
                             </button>
 
                         </div>
@@ -231,7 +451,50 @@ function Homepage() {
                     </div>
 
 
-                    <div className="hero-image-wrapper">
+                   
+
+                    <div
+                        className="hero-image-wrapper"
+
+                        style={{
+                            transform: `
+                                translate(
+                                    ${mouse.x}px,
+                                    ${mouse.y - scrollY * 0.12}px
+                                )
+                            `
+                        }}
+                    >
+
+                        <div
+                            className="
+                                hero-orbit
+                                orbit-one
+                            "
+                        >
+                            <span />
+                        </div>
+
+
+                        <div
+                            className="
+                                hero-orbit
+                                orbit-two
+                            "
+                        >
+                            <span />
+                        </div>
+
+
+                        <div
+                            className="
+                                hero-orbit
+                                orbit-three
+                            "
+                        >
+                            <span />
+                        </div>
+
 
                         <img
                             src={profileImage}
@@ -241,50 +504,118 @@ function Homepage() {
 
                     </div>
 
+
+                 
+
+                    <div
+                        className="scroll-indicator"
+
+                        style={{
+                            opacity:
+                                Math.max(
+                                    0,
+                                    1 - scrollY / 300
+                                )
+                        }}
+                    >
+
+                        <span className="scroll-line" />
+
+                        <span>
+                            SCROLL TO EXPLORE
+                        </span>
+
+                    </div>
+
                 </section>
 
 
-                {/* =================================================
-                    QUICK INTRO
-                ================================================= */}
+{/* marquee */}
 
-                <section className="intro-strip">
+                <section
+                    className="
+                        marquee-section
+                        reveal
+                    "
+                >
+
+                    <div className="marquee-track">
+
+                        <span>
+                            SOFTWARE · AI/ML · FRONTEND ·
+                            SYSTEMS · DATA · SOFTWARE ·
+                            AI/ML · FRONTEND · SYSTEMS · DATA ·
+                        </span>
+
+                        <span>
+                            SOFTWARE · AI/ML · FRONTEND ·
+                            SYSTEMS · DATA · SOFTWARE ·
+                            AI/ML · FRONTEND · SYSTEMS · DATA ·
+                        </span>
+
+                        <span>
+                            SOFTWARE · AI/ML · FRONTEND ·
+                            SYSTEMS · DATA · SOFTWARE ·
+                            AI/ML · FRONTEND · SYSTEMS · DATA ·
+                        </span>
+
+                    </div>
+
+                </section>
+
+
+                
+
+                <section
+                    className="
+                        intro-strip
+                        reveal
+                    "
+                >
 
                     <p>
+
                         Currently exploring
+
                         <strong>
                             {' '}AI/ML, intelligent systems,
-                            data engineering, and full-stack development.
+                            data engineering, and full-stack
+                            development.
                         </strong>
+
                     </p>
 
                 </section>
 
-
-                {/* =================================================
-                    SELECTED WORK
-                ================================================= */}
-
+{/* projects */}
                 <section
                     className="projects-section"
                     ref={projectsRef}
                     id="projects"
                 >
 
-                    <div className="section-heading">
+                    <div
+                        className="
+                            section-heading
+                            reveal
+                        "
+                    >
 
                         <p className="eyebrow">
                             SELECTED WORK
                         </p>
 
+
                         <h2>
                             Things I've built.
                         </h2>
 
+
                         <p>
-                            A few projects I'm particularly proud of,
-                            ranging from machine learning and data systems
-                            to networking, cybersecurity, and software
+                            A few projects I'm particularly proud
+                            of, ranging from machine learning and
+                            data systems to networking,
+                            cybersecurity, and software
                             development.
                         </p>
 
@@ -293,108 +624,161 @@ function Homepage() {
 
                     <div className="projects-grid">
 
-                        {projects.map((project) => (
+                        {projects.map(
+                            (project, index) => (
 
-                            <article
-                                className={`project-card ${
-                                    project.featured
-                                        ? 'featured-project'
-                                        : ''
-                                }`}
-                                key={project.number}
-                            >
+                                <article
+                                    className={`
+                                        project-card
+                                        reveal
+                                        reveal-delay-${index + 1}
+                                        ${project.featured
+                                            ? 'featured-project'
+                                            : ''
+                                        }
+                                    `}
+                                    key={project.number}
+                                >
 
-                                <div className="project-top">
+                                    <div
+                                        className="project-top"
+                                    >
 
-                                    <span className="project-number">
-                                        {project.number}
-                                    </span>
-
-                                    <span className="project-status">
-                                        {project.status}
-                                    </span>
-
-                                </div>
-
-
-                                <div className="project-content">
-
-                                    <p className="project-category">
-                                        {project.category}
-                                    </p>
-
-
-                                    <h3>
-                                        {project.title}
-                                    </h3>
-
-
-                                    <p className="project-description">
-                                        {project.description}
-                                    </p>
-
-
-                                    <div className="project-technologies">
-
-                                        {project.technologies.map(
-                                            (technology) => (
-
-                                                <span
-                                                    key={technology}
-                                                    className="project-tech"
-                                                >
-                                                    {technology}
-                                                </span>
-
-                                            )
-                                        )}
-
-                                    </div>
-
-
-                                    <div className="project-bottom">
-
-                                        <span className="project-metric">
-                                            {project.metric}
+                                        <span
+                                            className="
+                                                project-number
+                                            "
+                                        >
+                                            {project.number}
                                         </span>
 
 
-                                        <a
-                                            href={project.github}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="project-link"
+                                        <span
+                                            className="
+                                                project-status
+                                            "
                                         >
-                                            View Project ↗
-                                        </a>
+                                            {project.status}
+                                        </span>
 
                                     </div>
 
-                                </div>
 
-                            </article>
+                                    <div
+                                        className="
+                                            project-content
+                                        "
+                                    >
 
-                        ))}
+                                        <p
+                                            className="
+                                                project-category
+                                            "
+                                        >
+                                            {project.category}
+                                        </p>
+
+
+                                        <h3>
+                                            {project.title}
+                                        </h3>
+
+
+                                        <p
+                                            className="
+                                                project-description
+                                            "
+                                        >
+                                            {project.description}
+                                        </p>
+
+
+                                        <div
+                                            className="
+                                                project-technologies
+                                            "
+                                        >
+
+                                            {project.technologies.map(
+                                                (technology) => (
+
+                                                    <span
+                                                        key={
+                                                            technology
+                                                        }
+                                                        className="
+                                                            project-tech
+                                                        "
+                                                    >
+                                                        {technology}
+                                                    </span>
+
+                                                )
+                                            )}
+
+                                        </div>
+
+
+                                        <div
+                                            className="
+                                                project-bottom
+                                            "
+                                        >
+
+                                            <span
+                                                className="
+                                                    project-metric
+                                                "
+                                            >
+                                                {project.metric}
+                                            </span>
+
+
+                                            <a
+                                                href={
+                                                    project.github
+                                                }
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className="
+                                                    project-link
+                                                "
+                                            >
+                                                View Project ↗
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+
+                                </article>
+
+                            )
+                        )}
 
                     </div>
 
                 </section>
 
 
-                {/* =================================================
-                    EXPERIENCE
-                ================================================= */}
+{/* experience */}
 
                 <section
                     className="experience-section"
                     id="experience"
                 >
 
-                    <div className="section-heading">
+                    <div
+                        className="
+                            section-heading
+                            reveal
+                        "
+                    >
 
                         <p className="eyebrow">
                             EXPERIENCE
                         </p>
+
 
                         <h2>
                             Places I've worked.
@@ -406,51 +790,83 @@ function Homepage() {
                     <div className="experience-list">
 
 
-                        {/* RARA LABS */}
+                       
 
-                        <article className="experience-card">
+                        <article
+                            className="
+                                experience-card
+                                reveal
+                            "
+                        >
 
-                            <div className="experience-meta">
+                            <div
+                                className="
+                                    experience-meta
+                                "
+                            >
 
-                                <p className="experience-date">
+                                <p
+                                    className="
+                                        experience-date
+                                    "
+                                >
                                     MAY — JUNE 2025
                                 </p>
 
-                                <p className="experience-type">
+
+                                <p
+                                    className="
+                                        experience-type
+                                    "
+                                >
                                     Internship
                                 </p>
 
                             </div>
 
 
-                            <div className="experience-main">
+                            <div
+                                className="
+                                    experience-main
+                                "
+                            >
 
                                 <h3>
-                                    Front-End Development Intern
+                                    Front-End Development
+                                    Intern
                                 </h3>
 
-                                <p className="experience-company">
+
+                                <p
+                                    className="
+                                        experience-company
+                                    "
+                                >
                                     Rara Labs
                                 </p>
+
 
                                 <ul>
 
                                     <li>
-                                        Developed responsive user
-                                        interfaces using React,
-                                        HTML, CSS, and JavaScript.
+                                        Developed responsive
+                                        user interfaces using
+                                        React, HTML, CSS, and
+                                        JavaScript.
                                     </li>
+
 
                                     <li>
                                         Integrated APIs to support
-                                        dynamic content within the
-                                        application.
+                                        dynamic content within
+                                        the application.
                                     </li>
 
+
                                     <li>
-                                        Worked with design teams to
-                                        improve usability and frontend
-                                        performance.
+                                        Worked with design teams
+                                        to improve usability and
+                                        frontend performance.
                                     </li>
 
                                 </ul>
@@ -460,51 +876,83 @@ function Homepage() {
                         </article>
 
 
-                        {/* EWAN */}
+                       
 
-                        <article className="experience-card">
+                        <article
+                            className="
+                                experience-card
+                                reveal
+                                reveal-delay-2
+                            "
+                        >
 
-                            <div className="experience-meta">
+                            <div
+                                className="
+                                    experience-meta
+                                "
+                            >
 
-                                <p className="experience-date">
+                                <p
+                                    className="
+                                        experience-date
+                                    "
+                                >
                                     MAY — JUNE 2026
                                 </p>
 
-                                <p className="experience-type">
+
+                                <p
+                                    className="
+                                        experience-type
+                                    "
+                                >
                                     Internship
                                 </p>
 
                             </div>
 
 
-                            <div className="experience-main">
+                            <div
+                                className="
+                                    experience-main
+                                "
+                            >
 
                                 <h3>
                                     App Development Intern
                                 </h3>
 
-                                <p className="experience-company">
+
+                                <p
+                                    className="
+                                        experience-company
+                                    "
+                                >
                                     Ewan Engineering
                                 </p>
+
 
                                 <ul>
 
                                     <li>
                                         Developed cross-platform
-                                        mobile application features
-                                        using React Native and
-                                        JavaScript.
+                                        mobile application
+                                        features using React
+                                        Native and JavaScript.
                                     </li>
 
-                                    <li>
-                                        Built reusable and responsive
-                                        UI components for mobile
-                                        applications.
-                                    </li>
 
                                     <li>
-                                        Integrated REST APIs to fetch
-                                        and display dynamic data.
+                                        Built reusable and
+                                        responsive UI components
+                                        for mobile applications.
+                                    </li>
+
+
+                                    <li>
+                                        Integrated REST APIs to
+                                        fetch and display dynamic
+                                        data.
                                     </li>
 
                                 </ul>
@@ -518,20 +966,24 @@ function Homepage() {
                 </section>
 
 
-                {/* =================================================
-                    SKILLS
-                ================================================= */}
+{/* skills */}
 
                 <section
                     className="skills-section"
                     id="skills"
                 >
 
-                    <div className="section-heading">
+                    <div
+                        className="
+                            section-heading
+                            reveal
+                        "
+                    >
 
                         <p className="eyebrow">
                             TOOLKIT
                         </p>
+
 
                         <h2>
                             What I work with.
@@ -542,7 +994,13 @@ function Homepage() {
 
                     <div className="skills-grid">
 
-                        <div className="skill-group">
+
+                        <div
+                            className="
+                                skill-group
+                                reveal
+                            "
+                        >
 
                             <h3>
                                 Languages
@@ -555,43 +1013,64 @@ function Homepage() {
                         </div>
 
 
-                        <div className="skill-group">
+                        <div
+                            className="
+                                skill-group
+                                reveal
+                                reveal-delay-2
+                            "
+                        >
 
                             <h3>
                                 AI & Data
                             </h3>
 
                             <p>
-                                NLP · Scikit-learn · Causal Inference ·
-                                Reinforcement Learning · Big Data
+                                NLP · Scikit-learn · Causal
+                                Inference · Reinforcement
+                                Learning · Big Data
                             </p>
 
                         </div>
 
 
-                        <div className="skill-group">
+                        <div
+                            className="
+                                skill-group
+                                reveal
+                                reveal-delay-3
+                            "
+                        >
 
                             <h3>
                                 Web & Mobile
                             </h3>
 
                             <p>
-                                React · React Native · Django · Flask ·
-                                HTML · CSS · Figma · REST APIs
+                                React · React Native · Django ·
+                                Flask · HTML · CSS · Figma ·
+                                REST APIs
                             </p>
 
                         </div>
 
 
-                        <div className="skill-group">
+                        <div
+                            className="
+                                skill-group
+                                reveal
+                                reveal-delay-4
+                            "
+                        >
 
                             <h3>
                                 Tools & Systems
                             </h3>
 
                             <p>
-                                Git · GitHub · Apache Kafka · PostgreSQL ·
-                                MySQL · FastAPI · Streamlit
+                                Git · GitHub · Apache Kafka ·
+                                PostgreSQL · MySQL · FastAPI ·
+                                Streamlit
                             </p>
 
                         </div>
@@ -601,11 +1080,15 @@ function Homepage() {
                 </section>
 
 
-                {/* =================================================
-                    ACHIEVEMENT
-                ================================================= */}
+{/* patent */}
 
-                <section className="achievement-section">
+                <section
+                    className="
+                        achievement-section
+                        reveal
+                    "
+                    id="patent"
+                >
 
                     <div className="achievement-card">
 
@@ -614,13 +1097,22 @@ function Homepage() {
                         </p>
 
 
-                        <div className="achievement-content">
+                        <div
+                            className="
+                                achievement-content
+                            "
+                        >
 
                             <div>
 
-                                <p className="achievement-label">
+                                <p
+                                    className="
+                                        achievement-label
+                                    "
+                                >
                                     PUBLISHED PATENT APPLICATION
                                 </p>
+
 
                                 <h2>
                                     Context-Aware NLP System
@@ -633,17 +1125,32 @@ function Homepage() {
                             <div>
 
                                 <p>
-                                    A cyberbullying detection system
-                                    developed for social media streams,
-                                    combining classification, severity
-                                    analysis, explainability, escalation
-                                    scoring, and forensic evidence.
-                                    <br></br>
-                                    <b>Application No. 202641086439 · Published July 2026</b>
-                                    <br></br>
+
+                                    A cyberbullying detection
+                                    system developed for social
+                                    media streams, combining
+                                    classification, severity
+                                    analysis, explainability,
+                                    escalation scoring, and
+                                    forensic evidence.
+
+                                    <br />
+                                    <br />
+
+                                    <b>
+                                        Application No.
+                                        202641086439 · Published
+                                        July 2026
+                                    </b>
+
                                 </p>
 
-                                <span className="patent-status">
+
+                                <span
+                                    className="
+                                        patent-status
+                                    "
+                                >
                                     Published · Under Examination
                                 </span>
 
@@ -656,20 +1163,24 @@ function Homepage() {
                 </section>
 
 
-                {/* =================================================
-                    ABOUT
-                ================================================= */}
+{/* about */}
 
                 <section
                     className="about-section"
                     id="about"
                 >
 
-                    <div className="section-heading">
+                    <div
+                        className="
+                            section-heading
+                            reveal
+                        "
+                    >
 
                         <p className="eyebrow">
                             ABOUT
                         </p>
+
 
                         <h2>
                             A little about me.
@@ -678,34 +1189,50 @@ function Homepage() {
                     </div>
 
 
-                    <div className="about-content">
+                    <div
+                        className="
+                            about-content
+                            reveal
+                        "
+                    >
 
                         <p>
-                            I'm a fourth-year Information Technology
-                            student at VIT Vellore. I started out mostly
-                            building interfaces and gradually found myself
-                            getting more curious about what happens behind
-                            them mostly data, systems, models, and the problems
+
+                            I'm a fourth-year Information
+                            Technology student at VIT Vellore.
+                            I started out mostly building
+                            interfaces and gradually found
+                            myself getting more curious about
+                            what happens behind them mostly data,
+                            systems, models, and the problems
                             they can solve.
+
                         </p>
 
 
                         <p>
-                            These days, my projects sit somewhere between
-                            software development and AI/ML and UI/UX.
-                            I've worked on
-                            real-time data pipelines, NLP systems,
-                            reinforcement learning, networking, and causal
-                            analysis, while still enjoying the frontend
+
+                            These days, my projects sit
+                            somewhere between software
+                            development, AI/ML, and UI/UX.
+                            I've worked on real-time data
+                            pipelines, NLP systems,
+                            reinforcement learning,
+                            networking, and causal analysis,
+                            while still enjoying the frontend
                             side of building things.
+
                         </p>
 
 
                         <p>
-                            I like projects where I can learn something
-                            new while making something that actually works.
-                            And yes, I still care way too much about how
+
+                            I like projects where I can learn
+                            something new while making something
+                            that actually works. And yes, I
+                            still care way too much about how
                             the final interface looks.
+
                         </p>
 
                     </div>
@@ -713,94 +1240,79 @@ function Homepage() {
                 </section>
 
 
-                {/* =================================================
-                    CURRENTLY EXPLORING
-                ================================================= */}
+{/* currently exploring */}
 
-                <section className="building-section">
+                <section
+                    className="
+                        building-section
+                        reveal
+                    "
+                >
 
                     <p className="eyebrow">
                         CURRENTLY EXPLORING
                     </p>
 
+
                     <h2>
-                        AI/ML systems, better software, frontend
-                        and whatever interesting problem
-                        comes next.
+
+                        AI/ML systems, better software,
+                        frontend and whatever interesting
+                        problem comes next.
+
                     </h2>
 
                 </section>
 
 
-                {/* =================================================
-                    CONTACT
-                ================================================= */}
+{/* contact */}
 
-                <section
-                    className="contact-section"
-                    id="contact"
-                    ref={contactRef}
-                >
+                <section className="contact-section">
 
-                    <p className="eyebrow">
-                        LET'S CONNECT
-                    </p>
+                    <p className="eyebrow">GET IN TOUCH</p>
 
                     <h2>
-                        Want to build
-                        <span> something?</span>
+                        Let's build something
+                        <span> together.</span>
                     </h2>
 
                     <p className="contact-description">
-                        I'm always happy to talk about interesting projects,
-                        internships, ideas, or opportunities.
+                        Have a project, opportunity, or just want to talk?
+                        I'd love to hear from you.
                     </p>
 
+                    <div className="contact-email">
+                        <span>Email me at</span>
+
+                        <a href="mailto:lisa.ghimire1@gmail.com">
+                            lisa.ghimire1@gmail.com ↗
+                        </a>
+                    </div>
 
                     <div className="social-links">
 
-                        <button
-                            onClick={() =>
-                                window.open(
-                                    'https://www.linkedin.com/in/lisa-ghimire-85bab028a/',
-                                    '_blank'
-                                )
-                            }
+                        <a
+                            href="mailto:lisa.ghimire1@gmail.com"
+                            className="contact-button primary-contact"
                         >
+                            Send me an email ↗
+                        </a>
 
-                            <img
-                                src={linkedinIcon}
-                                alt=""
-                            />
-
-                            LinkedIn
-
-                        </button>
-
-
-                        <button
-                            onClick={() =>
-                                window.open(
-                                    'https://github.com/lisaghimire12',
-                                    '_blank'
-                                )
-                            }
+                        <a
+                            href="https://github.com/lisaghimire12"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="contact-button"
                         >
-
-                            <img
-                                src={githubIcon}
-                                alt=""
-                            />
-
-                            GitHub
-
-                        </button>
+                            GitHub ↗
+                        </a>
 
                     </div>
 
                 </section>
 
             </main>
+
         </>
     );
 }
