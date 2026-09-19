@@ -1138,9 +1138,7 @@ function Homepage() {
                                     <br />
 
                                     <b>
-                                        Application No.
-                                        202641086439 · Published
-                                        July 2026
+                                        Indian Patent Application No. 202641086439
                                     </b>
 
                                 </p>
@@ -1151,7 +1149,8 @@ function Homepage() {
                                         patent-status
                                     "
                                 >
-                                    Published · Under Examination
+                                    Published: July 2026
+                                    Status: Published · Under Examination
                                 </span>
 
                             </div>
