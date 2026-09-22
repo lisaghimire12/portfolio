@@ -7,9 +7,7 @@ import profileImage from '/src/assets/images/picture.png';
 import linkedinIcon from '/src/assets/images/linkedin.svg';
 import githubIcon from '/src/assets/images/github.svg';
 
-
 function Homepage() {
-
     const navigate = useNavigate();
 
     const projectsRef = useRef(null);
@@ -17,16 +15,15 @@ function Homepage() {
 
     const [scrollY, setScrollY] = useState(0);
     const [scrollProgress, setScrollProgress] = useState(0);
+
     const [mouse, setMouse] = useState({
         x: 0,
         y: 0
     });
 
-
     const handleHomeClick = () => {
         navigate('/');
     };
-
 
     const scrollToProjects = () => {
         projectsRef.current?.scrollIntoView({
@@ -34,41 +31,30 @@ function Homepage() {
         });
     };
 
-
     const scrollToContact = () => {
         contactRef.current?.scrollIntoView({
             behavior: 'smooth'
         });
     };
 
-
-/* SCROLL*/
+    /* SCROLL */
 
     useEffect(() => {
-
         const handleScroll = () => {
-
-            const currentScroll =
-                window.scrollY;
+            const currentScroll = window.scrollY;
 
             setScrollY(currentScroll);
-
 
             const totalHeight =
                 document.documentElement.scrollHeight -
                 window.innerHeight;
 
-
             if (totalHeight > 0) {
-
                 setScrollProgress(
                     (currentScroll / totalHeight) * 100
                 );
-
             }
-
         };
-
 
         window.addEventListener(
             'scroll',
@@ -76,86 +62,63 @@ function Homepage() {
             { passive: true }
         );
 
-
         handleScroll();
 
-
         return () => {
-
             window.removeEventListener(
                 'scroll',
                 handleScroll
             );
-
         };
-
     }, []);
 
-
-/*Mouse movement*/
+    /* MOUSE MOVEMENT */
 
     useEffect(() => {
-
         const handleMouseMove = (event) => {
-
             const x =
                 (event.clientX / window.innerWidth - 0.5) * 18;
 
             const y =
                 (event.clientY / window.innerHeight - 0.5) * 18;
 
-
             setMouse({
                 x,
                 y
             });
-
         };
-
 
         window.addEventListener(
             'mousemove',
             handleMouseMove
         );
 
-
         return () => {
-
             window.removeEventListener(
                 'mousemove',
                 handleMouseMove
             );
-
         };
-
     }, []);
 
-
-/*reveal*/
+    /* REVEAL */
 
     useEffect(() => {
-
         const elements =
             document.querySelectorAll('.reveal');
-
 
         if (!elements.length) {
             return;
         }
 
-
         const observer =
             new IntersectionObserver(
-
                 (entries) => {
-
                     entries.forEach(
                         (entry) => {
-
                             if (
                                 entry.isIntersecting
                             ) {
-
                                 entry.target.classList.add(
                                     'is-visible'
                                 );
@@ -163,42 +126,29 @@ function Homepage() {
                                 observer.unobserve(
                                     entry.target
                                 );
-
                             }
-
                         }
                     );
-
                 },
-
                 {
                     threshold: 0.12
                 }
-
             );
-
 
         elements.forEach(
             (element) => {
-
-                observer.observe(
-                    element
-                );
-
+                observer.observe(element);
             }
         );
-
 
         return () => {
             observer.disconnect();
         };
-
     }, []);
 
-/*Projects*/
+    /* PROJECTS */
 
     const projects = [
-
         {
             number: '01',
 
@@ -228,7 +178,6 @@ function Homepage() {
             github:
                 'https://github.com/lisaghimire12/User-Journey-Intelligence-System'
         },
-
 
         {
             number: '02',
@@ -261,7 +210,6 @@ function Homepage() {
                 'https://github.com/lisaghimire12/Reinforcement-Learning-Based-Self-Healing-Network-Simulator'
         },
 
-
         {
             number: '03',
 
@@ -293,7 +241,6 @@ function Homepage() {
                 'https://github.com/lisaghimire12/Real-Time-Job-Market-Sentiment-Analyzer'
         },
 
-
         {
             number: '04',
 
@@ -322,17 +269,15 @@ function Homepage() {
 
             github:
                 'https://github.com/lisaghimire12/cyberbullying-detection-system',
+
             live:
                 'https://cyberbullying-detection-system-iw5z.onrender.com',
 
             featured: true
         }
-
     ];
 
-
     return (
-
         <>
             <div
                 className="scroll-progress"
@@ -341,23 +286,22 @@ function Homepage() {
                 }}
             />
 
-
             <Navbar
                 onProjectsClick={scrollToProjects}
                 handleHomeClick={handleHomeClick}
             />
 
-
             <main>
+
+                {/* HERO */}
+
                 <section
                     className="hero"
                     id="home"
                 >
 
-
                     <div
                         className="hero-content"
-
                         style={{
                             transform: `
                                 translateY(${scrollY * -0.10}px)
@@ -373,11 +317,8 @@ function Homepage() {
                     >
 
                         <p className="eyebrow hero-eyebrow">
-
                             SOFTWARE · AI/ML · FRONTEND
-
                         </p>
-
 
                         <h1 className="hero-title">
 
@@ -390,7 +331,6 @@ function Homepage() {
                                 Hey, I'm Lisa.
                             </span>
 
-
                             <span
                                 className="
                                     hero-line
@@ -399,7 +339,6 @@ function Homepage() {
                             >
                                 I build things with code,
                             </span>
-
 
                             <span
                                 className="
@@ -412,37 +351,28 @@ function Homepage() {
 
                         </h1>
 
-
                         <p className="hero-description">
-
                             I'm a fourth-year Information
                             Technology student at VIT Vellore
                             interested in software development,
                             machine learning, and building useful
                             things from ideas that start out as
                             "what if?"
-
                         </p>
-
 
                         <div className="hero-buttons">
 
                             <button
                                 className="primary-button"
-                                onClick={
-                                    scrollToProjects
-                                }
+                                onClick={scrollToProjects}
                             >
                                 See My Work
                                 <span>↓</span>
                             </button>
 
-
                             <button
                                 className="secondary-button"
-                                onClick={
-                                    scrollToContact
-                                }
+                                onClick={scrollToContact}
                             >
                                 Get In Touch
                                 <span>↗</span>
@@ -452,12 +382,8 @@ function Homepage() {
 
                     </div>
 
-
-                   
-
                     <div
                         className="hero-image-wrapper"
-
                         style={{
                             transform: `
                                 translate(
@@ -477,7 +403,6 @@ function Homepage() {
                             <span />
                         </div>
 
-
                         <div
                             className="
                                 hero-orbit
@@ -486,7 +411,6 @@ function Homepage() {
                         >
                             <span />
                         </div>
-
 
                         <div
                             className="
@@ -497,7 +421,6 @@ function Homepage() {
                             <span />
                         </div>
 
-
                         <img
                             src={profileImage}
                             alt="Illustration representing Lisa"
@@ -506,12 +429,8 @@ function Homepage() {
 
                     </div>
 
-
-                 
-
                     <div
                         className="scroll-indicator"
-
                         style={{
                             opacity:
                                 Math.max(
@@ -532,7 +451,7 @@ function Homepage() {
                 </section>
 
 
-{/* marquee */}
+                {/* MARQUEE */}
 
                 <section
                     className="
@@ -566,7 +485,7 @@ function Homepage() {
                 </section>
 
 
-                
+                {/* INTRO */}
 
                 <section
                     className="
@@ -576,7 +495,6 @@ function Homepage() {
                 >
 
                     <p>
-
                         Currently exploring
 
                         <strong>
@@ -584,12 +502,13 @@ function Homepage() {
                             data engineering, and full-stack
                             development.
                         </strong>
-
                     </p>
 
                 </section>
 
-{/* projects */}
+
+                {/* PROJECTS */}
+
                 <section
                     className="projects-section"
                     ref={projectsRef}
@@ -607,11 +526,9 @@ function Homepage() {
                             SELECTED WORK
                         </p>
 
-
                         <h2>
                             Things I've built.
                         </h2>
-
 
                         <p>
                             A few projects I'm particularly proud
@@ -653,7 +570,6 @@ function Homepage() {
                                         >
                                             {project.number}
                                         </span>
-
 
                                         <span
                                             className="
@@ -736,18 +652,43 @@ function Homepage() {
                                             </span>
 
 
-                                            <a
-                                                href={
-                                                    project.github
-                                                }
-                                                target="_blank"
-                                                rel="noreferrer"
+                                            <div
                                                 className="
-                                                    project-link
+                                                    project-links
                                                 "
                                             >
-                                                View Project ↗
-                                            </a>
+
+                                                <a
+                                                    href={
+                                                        project.github
+                                                    }
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="
+                                                        project-link
+                                                    "
+                                                >
+                                                    View Project ↗
+                                                </a>
+
+
+                                                {project.live && (
+                                                    <a
+                                                        href={
+                                                            project.live
+                                                        }
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="
+                                                            project-link
+                                                            live-project-link
+                                                        "
+                                                    >
+                                                        View Live Website ↗
+                                                    </a>
+                                                )}
+
+                                            </div>
 
                                         </div>
 
@@ -763,7 +704,7 @@ function Homepage() {
                 </section>
 
 
-{/* experience */}
+                {/* EXPERIENCE */}
 
                 <section
                     className="experience-section"
@@ -781,7 +722,6 @@ function Homepage() {
                             EXPERIENCE
                         </p>
 
-
                         <h2>
                             Places I've worked.
                         </h2>
@@ -790,9 +730,6 @@ function Homepage() {
 
 
                     <div className="experience-list">
-
-
-                       
 
                         <article
                             className="
@@ -814,7 +751,6 @@ function Homepage() {
                                 >
                                     MAY — JUNE 2025
                                 </p>
-
 
                                 <p
                                     className="
@@ -838,7 +774,6 @@ function Homepage() {
                                     Intern
                                 </h3>
 
-
                                 <p
                                     className="
                                         experience-company
@@ -846,7 +781,6 @@ function Homepage() {
                                 >
                                     Rara Labs
                                 </p>
-
 
                                 <ul>
 
@@ -857,13 +791,11 @@ function Homepage() {
                                         JavaScript.
                                     </li>
 
-
                                     <li>
                                         Integrated APIs to support
                                         dynamic content within
                                         the application.
                                     </li>
-
 
                                     <li>
                                         Worked with design teams
@@ -877,8 +809,6 @@ function Homepage() {
 
                         </article>
 
-
-                       
 
                         <article
                             className="
@@ -902,7 +832,6 @@ function Homepage() {
                                     MAY — JUNE 2026
                                 </p>
 
-
                                 <p
                                     className="
                                         experience-type
@@ -924,7 +853,6 @@ function Homepage() {
                                     App Development Intern
                                 </h3>
 
-
                                 <p
                                     className="
                                         experience-company
@@ -932,7 +860,6 @@ function Homepage() {
                                 >
                                     Ewan Engineering
                                 </p>
-
 
                                 <ul>
 
@@ -943,13 +870,11 @@ function Homepage() {
                                         Native and JavaScript.
                                     </li>
 
-
                                     <li>
                                         Built reusable and
                                         responsive UI components
                                         for mobile applications.
                                     </li>
-
 
                                     <li>
                                         Integrated REST APIs to
@@ -968,7 +893,7 @@ function Homepage() {
                 </section>
 
 
-{/* skills */}
+                {/* SKILLS */}
 
                 <section
                     className="skills-section"
@@ -986,7 +911,6 @@ function Homepage() {
                             TOOLKIT
                         </p>
 
-
                         <h2>
                             What I work with.
                         </h2>
@@ -995,7 +919,6 @@ function Homepage() {
 
 
                     <div className="skills-grid">
-
 
                         <div
                             className="
@@ -1082,7 +1005,7 @@ function Homepage() {
                 </section>
 
 
-{/* patent */}
+                {/* PATENT */}
 
                 <section
                     className="
@@ -1127,7 +1050,6 @@ function Homepage() {
                             <div>
 
                                 <p>
-
                                     A cyberbullying detection
                                     system developed for social
                                     media streams, combining
@@ -1164,7 +1086,7 @@ function Homepage() {
                 </section>
 
 
-{/* about */}
+                {/* ABOUT */}
 
                 <section
                     className="about-section"
@@ -1182,7 +1104,6 @@ function Homepage() {
                             ABOUT
                         </p>
 
-
                         <h2>
                             A little about me.
                         </h2>
@@ -1198,7 +1119,6 @@ function Homepage() {
                     >
 
                         <p>
-
                             I'm a fourth-year Information
                             Technology student at VIT Vellore.
                             I started out mostly building
@@ -1207,12 +1127,10 @@ function Homepage() {
                             what happens behind them mostly data,
                             systems, models, and the problems
                             they can solve.
-
                         </p>
 
 
                         <p>
-
                             These days, my projects sit
                             somewhere between software
                             development, AI/ML, and UI/UX.
@@ -1222,18 +1140,15 @@ function Homepage() {
                             networking, and causal analysis,
                             while still enjoying the frontend
                             side of building things.
-
                         </p>
 
 
                         <p>
-
                             I like projects where I can learn
                             something new while making something
                             that actually works. And yes, I
                             still care way too much about how
                             the final interface looks.
-
                         </p>
 
                     </div>
@@ -1241,7 +1156,7 @@ function Homepage() {
                 </section>
 
 
-{/* currently exploring */}
+                {/* CURRENTLY EXPLORING */}
 
                 <section
                     className="
@@ -1254,23 +1169,25 @@ function Homepage() {
                         CURRENTLY EXPLORING
                     </p>
 
-
                     <h2>
-
                         AI/ML systems, better software,
                         frontend and whatever interesting
                         problem comes next.
-
                     </h2>
 
                 </section>
 
 
-{/* contact */}
+                {/* CONTACT */}
 
-                <section className="contact-section">
+                <section
+                    className="contact-section"
+                    ref={contactRef}
+                >
 
-                    <p className="eyebrow">GET IN TOUCH</p>
+                    <p className="eyebrow">
+                        GET IN TOUCH
+                    </p>
 
                     <h2>
                         Let's build something
@@ -1283,11 +1200,15 @@ function Homepage() {
                     </p>
 
                     <div className="contact-email">
-                        <span>Email me at</span>
+
+                        <span>
+                            Email me at
+                        </span>
 
                         <a href="mailto:lisa.ghimire1@gmail.com">
                             lisa.ghimire1@gmail.com ↗
                         </a>
+
                     </div>
 
                     <div className="social-links">
@@ -1313,10 +1234,8 @@ function Homepage() {
                 </section>
 
             </main>
-
         </>
     );
 }
-
 
 export default Homepage;
