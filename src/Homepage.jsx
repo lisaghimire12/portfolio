@@ -322,6 +322,8 @@ function Homepage() {
 
             github:
                 'https://github.com/lisaghimire12/cyberbullying-detection-system',
+            live:
+                'https://cyberbullying-detection-system-iw5z.onrender.com',
 
             featured: true
         }
