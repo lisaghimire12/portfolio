@@ -4,8 +4,6 @@ import './Homepage.css';
 import Navbar from './Navbar';
 
 import profileImage from '/src/assets/images/picture.png';
-import linkedinIcon from '/src/assets/images/linkedin.svg';
-import githubIcon from '/src/assets/images/github.svg';
 
 function Homepage() {
     const navigate = useNavigate();
@@ -37,7 +35,9 @@ function Homepage() {
         });
     };
 
-    /* SCROLL */
+    /* =========================
+       SCROLL
+    ========================= */
 
     useEffect(() => {
         const handleScroll = () => {
@@ -72,7 +72,9 @@ function Homepage() {
         };
     }, []);
 
-    /* MOUSE MOVEMENT */
+    /* =========================
+       MOUSE MOVEMENT
+    ========================= */
 
     useEffect(() => {
         const handleMouseMove = (event) => {
@@ -101,7 +103,9 @@ function Homepage() {
         };
     }, []);
 
-    /* REVEAL */
+    /* =========================
+       REVEAL
+    ========================= */
 
     useEffect(() => {
         const elements =
@@ -146,7 +150,9 @@ function Homepage() {
         };
     }, []);
 
-    /* PROJECTS */
+    /* =========================
+       PROJECTS
+    ========================= */
 
     const projects = [
         {
@@ -274,17 +280,91 @@ function Homepage() {
                 'https://cyberbullying-detection-system-iw5z.onrender.com',
 
             featured: true
+        },
+
+        {
+            number: '05',
+
+            title:
+                'E-Commerce Web Application',
+
+            category:
+                'Frontend · E-Commerce · React',
+
+            status:
+                'Live · Deployed',
+
+            description:
+                'A responsive e-commerce interface with product search, category filtering, product details, shopping cart functionality, reusable React components, REST API integration, and responsive layouts.',
+
+            technologies: [
+                'React.js',
+                'JavaScript',
+                'CSS',
+                'React Router',
+                'REST APIs'
+            ],
+
+            metric:
+                'Live deployed website',
+
+            github:
+                'https://github.com/lisaghimire12/E-commerce',
+
+            live:
+                'https://e-commerse-opal.vercel.app'
+        },
+
+        {
+            number: '06',
+
+            title:
+                'WeatherWear',
+
+            category:
+                'Web Development · Django · Weather API',
+
+            status:
+                'Live · Deployed',
+
+            description:
+                'A weather-based web application that uses real-time weather information from the OpenWeather API to provide weather-aware outfit recommendations.',
+
+            technologies: [
+                'Python',
+                'Django',
+                'OpenWeather API',
+                'HTML',
+                'CSS'
+            ],
+
+            metric:
+                'Live deployed website',
+
+            github:
+                'https://github.com/lisaghimire12/weatherwear',
+
+            live:
+                'https://weatherwear-vlqg.onrender.com'
         }
     ];
 
     return (
         <>
+            {/* =========================
+                SCROLL PROGRESS
+            ========================= */}
+
             <div
                 className="scroll-progress"
                 style={{
                     width: `${scrollProgress}%`
                 }}
             />
+
+            {/* =========================
+                NAVBAR
+            ========================= */}
 
             <Navbar
                 onProjectsClick={scrollToProjects}
@@ -293,7 +373,9 @@ function Homepage() {
 
             <main>
 
-                {/* HERO */}
+                {/* =========================
+                    HERO
+                ========================= */}
 
                 <section
                     className="hero"
@@ -382,6 +464,8 @@ function Homepage() {
 
                     </div>
 
+                    {/* HERO IMAGE */}
+
                     <div
                         className="hero-image-wrapper"
                         style={{
@@ -429,6 +513,8 @@ function Homepage() {
 
                     </div>
 
+                    {/* SCROLL INDICATOR */}
+
                     <div
                         className="scroll-indicator"
                         style={{
@@ -450,8 +536,9 @@ function Homepage() {
 
                 </section>
 
-
-                {/* MARQUEE */}
+                {/* =========================
+                    MARQUEE
+                ========================= */}
 
                 <section
                     className="
@@ -484,8 +571,9 @@ function Homepage() {
 
                 </section>
 
-
-                {/* INTRO */}
+                {/* =========================
+                    INTRO
+                ========================= */}
 
                 <section
                     className="
@@ -496,7 +584,6 @@ function Homepage() {
 
                     <p>
                         Currently exploring
-
                         <strong>
                             {' '}AI/ML, intelligent systems,
                             data engineering, and full-stack
@@ -506,8 +593,9 @@ function Homepage() {
 
                 </section>
 
-
-                {/* PROJECTS */}
+                {/* =========================
+                    PROJECTS
+                ========================= */}
 
                 <section
                     className="projects-section"
@@ -540,7 +628,6 @@ function Homepage() {
 
                     </div>
 
-
                     <div className="projects-grid">
 
                         {projects.map(
@@ -551,9 +638,10 @@ function Homepage() {
                                         project-card
                                         reveal
                                         reveal-delay-${index + 1}
-                                        ${project.featured
-                                            ? 'featured-project'
-                                            : ''
+                                        ${
+                                            project.featured
+                                                ? 'featured-project'
+                                                : ''
                                         }
                                     `}
                                     key={project.number}
@@ -581,7 +669,6 @@ function Homepage() {
 
                                     </div>
 
-
                                     <div
                                         className="
                                             project-content
@@ -596,11 +683,9 @@ function Homepage() {
                                             {project.category}
                                         </p>
 
-
                                         <h3>
                                             {project.title}
                                         </h3>
-
 
                                         <p
                                             className="
@@ -609,7 +694,6 @@ function Homepage() {
                                         >
                                             {project.description}
                                         </p>
-
 
                                         <div
                                             className="
@@ -636,7 +720,6 @@ function Homepage() {
 
                                         </div>
 
-
                                         <div
                                             className="
                                                 project-bottom
@@ -650,7 +733,6 @@ function Homepage() {
                                             >
                                                 {project.metric}
                                             </span>
-
 
                                             <div
                                                 className="
@@ -670,7 +752,6 @@ function Homepage() {
                                                 >
                                                     View Project ↗
                                                 </a>
-
 
                                                 {project.live && (
                                                     <a
@@ -703,8 +784,9 @@ function Homepage() {
 
                 </section>
 
-
-                {/* EXPERIENCE */}
+                {/* =========================
+                    EXPERIENCE
+                ========================= */}
 
                 <section
                     className="experience-section"
@@ -728,8 +810,9 @@ function Homepage() {
 
                     </div>
 
-
                     <div className="experience-list">
+
+                        {/* RARA LABS */}
 
                         <article
                             className="
@@ -761,7 +844,6 @@ function Homepage() {
                                 </p>
 
                             </div>
-
 
                             <div
                                 className="
@@ -809,6 +891,7 @@ function Homepage() {
 
                         </article>
 
+                        {/* EWAN ENGINEERING */}
 
                         <article
                             className="
@@ -841,7 +924,6 @@ function Homepage() {
                                 </p>
 
                             </div>
-
 
                             <div
                                 className="
@@ -892,8 +974,9 @@ function Homepage() {
 
                 </section>
 
-
-                {/* SKILLS */}
+                {/* =========================
+                    SKILLS
+                ========================= */}
 
                 <section
                     className="skills-section"
@@ -917,7 +1000,6 @@ function Homepage() {
 
                     </div>
 
-
                     <div className="skills-grid">
 
                         <div
@@ -932,11 +1014,11 @@ function Homepage() {
                             </h3>
 
                             <p>
-                                Python · C++ · JavaScript · SQL
+                                Python · C++ · JavaScript ·
+                                TypeScript · SQL
                             </p>
 
                         </div>
-
 
                         <div
                             className="
@@ -958,7 +1040,6 @@ function Homepage() {
 
                         </div>
 
-
                         <div
                             className="
                                 skill-group
@@ -978,7 +1059,6 @@ function Homepage() {
                             </p>
 
                         </div>
-
 
                         <div
                             className="
@@ -1004,8 +1084,9 @@ function Homepage() {
 
                 </section>
 
-
-                {/* PATENT */}
+                {/* =========================
+                    PATENT
+                ========================= */}
 
                 <section
                     className="
@@ -1020,7 +1101,6 @@ function Homepage() {
                         <p className="eyebrow">
                             RESEARCH & INNOVATION
                         </p>
-
 
                         <div
                             className="
@@ -1038,14 +1118,12 @@ function Homepage() {
                                     PUBLISHED PATENT APPLICATION
                                 </p>
 
-
                                 <h2>
                                     Context-Aware NLP System
                                     for Harassment Filtering
                                 </h2>
 
                             </div>
-
 
                             <div>
 
@@ -1062,11 +1140,10 @@ function Homepage() {
                                     <br />
 
                                     <b>
-                                        Indian Patent Application No. 202641086439
+                                        Indian Patent Application
+                                        No. 202641086439
                                     </b>
-
                                 </p>
-
 
                                 <span
                                     className="
@@ -1085,8 +1162,9 @@ function Homepage() {
 
                 </section>
 
-
-                {/* ABOUT */}
+                {/* =========================
+                    ABOUT
+                ========================= */}
 
                 <section
                     className="about-section"
@@ -1110,7 +1188,6 @@ function Homepage() {
 
                     </div>
 
-
                     <div
                         className="
                             about-content
@@ -1124,11 +1201,10 @@ function Homepage() {
                             I started out mostly building
                             interfaces and gradually found
                             myself getting more curious about
-                            what happens behind them mostly data,
-                            systems, models, and the problems
-                            they can solve.
+                            what happens behind them — mostly
+                            data, systems, models, and the
+                            problems they can solve.
                         </p>
-
 
                         <p>
                             These days, my projects sit
@@ -1142,7 +1218,6 @@ function Homepage() {
                             side of building things.
                         </p>
 
-
                         <p>
                             I like projects where I can learn
                             something new while making something
@@ -1155,8 +1230,9 @@ function Homepage() {
 
                 </section>
 
-
-                {/* CURRENTLY EXPLORING */}
+                {/* =========================
+                    CURRENTLY EXPLORING
+                ========================= */}
 
                 <section
                     className="
@@ -1177,8 +1253,9 @@ function Homepage() {
 
                 </section>
 
-
-                {/* CONTACT */}
+                {/* =========================
+                    CONTACT
+                ========================= */}
 
                 <section
                     className="contact-section"
@@ -1195,8 +1272,8 @@ function Homepage() {
                     </h2>
 
                     <p className="contact-description">
-                        Have a project, opportunity, or just want to talk?
-                        I'd love to hear from you.
+                        Have a project, opportunity, or just
+                        want to talk? I'd love to hear from you.
                     </p>
 
                     <div className="contact-email">
@@ -1215,7 +1292,10 @@ function Homepage() {
 
                         <a
                             href="mailto:lisa.ghimire1@gmail.com"
-                            className="contact-button primary-contact"
+                            className="
+                                contact-button
+                                primary-contact
+                            "
                         >
                             Send me an email ↗
                         </a>
